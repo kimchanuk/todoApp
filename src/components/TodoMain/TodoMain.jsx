@@ -2,15 +2,15 @@ import React, { useContext } from 'react';
 import SearchInput from './SearchInput';
 import TodoList from './TodoList';
 import { DataContext } from '../../context/Data';
-import ModifyModal from './ModifyModal';
+import Modals from './Modals';
 
 export default function TodoMain() {
-  const { modifyModal } = useContext(DataContext);
+  const { modifyModals } = useContext(DataContext);
   return (
     <div className='mainContainer'>
-      {modifyModal ? <ModifyModal /> : null}
       <SearchInput />
       <TodoList />
+      {modifyModals && <Modals />}
     </div>
   );
 }

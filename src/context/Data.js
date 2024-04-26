@@ -7,9 +7,28 @@ export const DataContextProvider = ({ children }) => {
   const [filter, setFilter] = useState(filters[0]);
   //init headerFIlters states
 
+  const [searchInput, setSearchInput] = useState('');
+
+  const searchHandlers = () => {
+    if (searchInput) {
+      if (searchInput === '') {
+        return todoItem;
+      }
+      return todoItem.filter(t => t.text.includes(searchInput));
+      /////search 와 tabp메뉴
+    } else {
+      if (filter === 'all') {
+        return todoItem;
+      }
+      return todoItem.filter(t => t.status === filter);
+    }
+  };
+
+  //search
+
   const [todoItem, setTodoItem] = useState([
-    { id: 1, text: '장보기', status: 'completed' },
-    { id: 2, text: '공부하기', status: 'completed' },
+    { id: 1, text: '장보기', status: 'active' },
+    { id: 2, text: '공부하기', status: 'active' },
   ]);
   //dummy data
 
@@ -22,11 +41,15 @@ export const DataContextProvider = ({ children }) => {
   };
   //삭제 로직
 
-  const [modifyModal, setmodifyModal] = useState(false);
+  const [modifyModals, setmodifyModal] = useState(false);
 
   const modifyModalHandler = () => {
-    setmodifyModal(true);
+    setmodifyModal(prev => !prev);
   };
+
+  //수정하기
+
+  const [selectedItem, setSeltedItem] = useState(null);
 
   return (
     <DataContext.Provider
@@ -39,9 +62,14 @@ export const DataContextProvider = ({ children }) => {
         addInputValue,
         setAddInputValue,
         removeHandler,
-        modifyModal,
+        modifyModals,
         setmodifyModal,
         modifyModalHandler,
+        selectedItem,
+        setSeltedItem,
+        searchInput,
+        setSearchInput,
+        searchHandlers,
       }}
     >
       {children}

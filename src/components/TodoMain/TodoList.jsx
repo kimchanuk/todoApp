@@ -1,15 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { DataContext } from '../../context/Data';
 import TodoItem from './TodoItem';
 
 export default function TodoList() {
-  const { todoItem } = useContext(DataContext);
+  const { todoItem, searchHandlers } = useContext(DataContext);
+  const newArrary = searchHandlers(todoItem);
 
   return (
     <div>
       <ul>
-        {todoItem.map((t, i) => (
-          <TodoItem todoItem={t} key={i} />
+        {newArrary.map((t, i) => (
+          <TodoItem todoItems={t} key={i} />
         ))}
       </ul>
     </div>

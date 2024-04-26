@@ -2,7 +2,6 @@ import './App.css';
 import TodoFooter from './components/TodoFooter/TodoFooter';
 import TodoHeader from './components/TodoHeader/TodoHeader';
 import TodoMain from './components/TodoMain/TodoMain';
-import ModifyModal from './components/TodoMain/ModifyModal';
 
 function App() {
   return (
