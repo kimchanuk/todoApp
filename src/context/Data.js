@@ -41,16 +41,6 @@ export const DataContextProvider = ({ children }) => {
   };
   //삭제 로직
 
-  const [modifyModals, setmodifyModal] = useState(false);
-
-  const modifyModalHandler = () => {
-    setmodifyModal(prev => !prev);
-  };
-
-  //수정하기
-
-  const [selectedItem, setSeltedItem] = useState(null);
-
   return (
     <DataContext.Provider
       value={{
